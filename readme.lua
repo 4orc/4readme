@@ -68,7 +68,7 @@ function are.of(s)  --> ?str;  top level, guesses a variable's type
 function are.plural(s) 
   if #s>1 and s:sub(#s)=="s"  then  
     local what = are.singular(s:sub(1,#s-1))
-    return what and "("..what..")+"  or "tab" end end
+    return what and "{"..what.."}"  or "tab" end end
 
 function are.singular(s) 
   return obj[s] or are.str(s) or are.num(s) or are.tbl(s) or are.bool(s) or are.fun(s) end
@@ -121,7 +121,6 @@ function dump() --> nil; if we have any tbl contents, print them then zap tbl
 -- ## Main
 function main(sFiles) --> nil; for all lines on command line, print doco to standard output
   for _,file in ipairs(sFiles) do
-    print("\n#",file,"\n")
     lines(file,function(line)
       if line:find"^[-][-] " then
         line:gsub("^[-][-] ([^\n]+)", 
@@ -131,7 +130,7 @@ function main(sFiles) --> nil; for all lines on command line, print doco to stan
         line:gsub("[A-Z][A-Z]+", function(x) obj[x:lower()]=x end)
         line:gsub("^function[%s]+([^(]+)[(]([^)]*).*[-][-][>]([^;]+);(.*)",
                   function(fun,args,returns,comment) 
-                     tbl[1+#tbl]={"<b>"..fun..'('..optional(pretty(args))..') &rArr; '..returns..'</b>',comment} 
+                     tbl[1+#tbl]={"<tt>"..fun..'('..optional(pretty(args))..') &rArr; '..returns..'</tt>',comment} 
                      end) end end) 
     dump() end  end
 
