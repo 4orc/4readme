@@ -113,9 +113,10 @@ function lines(sFilename, fun) --> nil; call `fun` on csv rows.
 
 function dump() --> nil; if we have any tbl contents, print them then zap tbl
   if #tbl>0 then
-    print("\n| What | Notes |\n|:---|:---|")
-    for _,two in pairs(tbl) do print("| "..two[1].." | ".. two[2] .." |") end 
-    print"\n" end
+    print("\n<dl>")
+    for _,two in pairs(tbl) do 
+      print("<dt><b> "..two[1].." </b></dt><dd> ".. two[2] .." </dd>") end 
+    print"</dl>\n" end
   tbl={} end 
 
 -- ## Main
@@ -130,7 +131,7 @@ function main(sFiles) --> nil; for all lines on command line, print doco to stan
         line:gsub("[A-Z][A-Z]+", function(x) obj[x:lower()]=x end)
         line:gsub("^function[%s]+([^(]+)[(]([^)]*).*[-][-][>]([^;]+);(.*)",
                   function(fun,args,returns,comment) 
-                     tbl[1+#tbl]={"<tt>"..fun..'('..optional(pretty(args))..') &rArr; '..returns..'</tt>',comment} 
+                     tbl[1+#tbl]={fun..'('..optional(pretty(args))..') &rArr; '..returns..'',comment} 
                      end) end end) 
     dump() end  end
 

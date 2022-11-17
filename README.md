@@ -8,9 +8,6 @@ Usage: lua readme.lua  [-h] [file1.lua file2.lua ...] > doco.md
 Options:
  -h --help Show help 
 ```
-
-#	readme.lua	
-
 > Extract doco from LUA files to Markdown. Assumes a simple Hungarian notation.	
  	
 For example, this file was generated via	
@@ -56,10 +53,9 @@ suffix fun  | suffix for functions
   	
 ## Guessing types	
 
-| What | Notes |
-|:---|:---|
-| <b>are.of(s:`str`) &rArr;  ?str</b> |   top level, guesses a variable's type |
-
+<dl>
+<dt><b> are.of(s:`str`) &rArr;  ?str </b></dt><dd>   top level, guesses a variable's type </dd>
+</dl>
 
 Types are either singular (one thing) or plural (a set of	
 things). The naming conventions for plurals is the same as	
@@ -68,30 +64,27 @@ booleans. and `ns` is a table of `n`umbers.
 Singulars are either `bools`, `fun` (function),	
 `n` (number), `s` (string), or `t` (table).	
 
-| What | Notes |
-|:---|:---|
-| <b>are.bool(s:`str`) &rArr;  ?"bool"</b> |  names starting with "is" are booleans |
-| <b>are.fun(s:`str`) &rArr;  ?"fun"</b> |  names ending in "fun" are functions |
-| <b>are.num(s:`str`) &rArr;  ?"n"</b> |  names start with "n" are numbers  |
-| <b>are.str(s:`str`) &rArr;  ?"s"</b> |  names starting with "s" are strings |
-| <b>are.tbl(s:`str`) &rArr;  ?"tab"</b> |  names ending the "s" are tables |
-
+<dl>
+<dt><b> are.bool(s:`str`) &rArr;  ?"bool" </b></dt><dd>  names starting with "is" are booleans </dd>
+<dt><b> are.fun(s:`str`) &rArr;  ?"fun" </b></dt><dd>  names ending in "fun" are functions </dd>
+<dt><b> are.num(s:`str`) &rArr;  ?"n" </b></dt><dd>  names start with "n" are numbers  </dd>
+<dt><b> are.str(s:`str`) &rArr;  ?"s" </b></dt><dd>  names starting with "s" are strings </dd>
+<dt><b> are.tbl(s:`str`) &rArr;  ?"tab" </b></dt><dd>  names ending the "s" are tables </dd>
+</dl>
 
 ## Low-level utilities	
 
-| What | Notes |
-|:---|:---|
-| <b>hint(s1:`str`, type) &rArr;  str</b> |  if we know a type, add to arg (else return arg) |
-| <b>pretty(s:`str`) &rArr;  str</b> |  clean up the signature (no spaces, no local vars) |
-| <b>optional(s:`str`) &rArr;  str</b> |  removes local vars, returns the rest as a string |
-| <b>lines(sFilename:`str`,  fun:`fun`) &rArr;  nil</b> |  call `fun` on csv rows. |
-| <b>dump() &rArr;  nil</b> |  if we have any tbl contents, print them then zap tbl |
-
+<dl>
+<dt><b> hint(s1:`str`, type) &rArr;  str </b></dt><dd>  if we know a type, add to arg (else return arg) </dd>
+<dt><b> pretty(s:`str`) &rArr;  str </b></dt><dd>  clean up the signature (no spaces, no local vars) </dd>
+<dt><b> optional(s:`str`) &rArr;  str </b></dt><dd>  removes local vars, returns the rest as a string </dd>
+<dt><b> lines(sFilename:`str`,  fun:`fun`) &rArr;  nil </b></dt><dd>  call `fun` on csv rows. </dd>
+<dt><b> dump() &rArr;  nil </b></dt><dd>  if we have any tbl contents, print them then zap tbl </dd>
+</dl>
 
 ## Main	
 
-| What | Notes |
-|:---|:---|
-| <b>main(sFiles:`(str)+`) &rArr;  nil</b> |  for all lines on command line, print doco to standard output |
-
+<dl>
+<dt><b> main(sFiles:`{str}`) &rArr;  nil </b></dt><dd>  for all lines on command line, print doco to standard output </dd>
+</dl>
 
